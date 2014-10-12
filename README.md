@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-DSN
-===
-
 Deeply-supervised Nets
 =======
 
@@ -12,6 +8,7 @@ We preprocess the data following the methods used in maxout networks and network
 
 To reproduce the results more easily, you can also download our processed Leveldb files [here](https://drive.google.com/file/d/0B3j4tSL88j-eU0c4NGd4NC0tUVU/view?usp=sharing)
 
+The configuration files are in the examples folder. You can run train\_full.sh script and it will automatically complete the training. The final result may vary from machine to machine. For cifar-10 you should be able to get at least 9.65% error, please contact me if you have problem in reproducing this. Thank you.
 
 ====
 **Below is original caffe README, please follow the installation instructions to compile this code.**
