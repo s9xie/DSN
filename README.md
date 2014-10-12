@@ -1,4 +1,14 @@
-[Caffe: Convolutional Architecture for Fast Feature Extraction](http://caffe.berkeleyvision.org)
+
+**Deeply Supervised Nets**
+This DSN code is based on an older version of [CAFFE](http://caffe.berkeleyvision.org) framework. This is for reproducing the results reported in our [paper](http://vcl.ucsd.edu/~sxie/2014/09/12/dsn-project/). Though with minimum engineering efforts you can apply this idea to your own code, as well as new network architectures.
+
+We preprocess the data following the methods used in maxout networks and network in network paper. Please find the details [here](https://github.com/lisa-lab/pylearn2/tree/master/pylearn2/scripts/papers/maxout). Basically we only did GCN (global contrast normalization) on the benchmark datasets. Note that the scale of the data is [0,1] instead of [0, 255]. This is a tricky part when you use your own data: You should tune the learning rate accordingly.
+
+To reproduce the results more easily, you can also download our processed Leveldb files [here](https://drive.google.com/file/d/0B3j4tSL88j-eU0c4NGd4NC0tUVU/view?usp=sharing)
+
+
+====
+**Below is original caffe README, please follow the installation instructions to compile this code.**
 
 Created by [Yangqing Jia](http://daggerfs.com), UC Berkeley EECS department.
 In active development by the Berkeley Vision and Learning Center ([BVLC](http://bvlc.eecs.berkeley.edu/)).
