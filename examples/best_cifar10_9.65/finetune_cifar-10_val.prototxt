@@ -1,0 +1,256 @@
+name: "CaffeNet"
+layers {
+  layer {
+    name: "data"
+    type: "data"
+    source: "cifar10_gcn-leveldb/cifar-test-leveldb"
+    batchsize: 100
+  }
+  top: "data"
+  top: "label"
+}
+layers {
+  layer {
+    name: "conv1"
+    type: "conv"
+    num_output: 192
+    kernelsize: 5
+    pad: 2
+  }
+  bottom: "data"
+  top: "conv1"
+}
+layers {
+  layer {
+    name: "relu1"
+    type: "relu"
+  }
+  bottom: "conv1"
+  top: "conv1"
+}
+layers {
+  layer {
+    name: "cccp1"
+    type: "cccp"
+    num_output: 160
+    group: 1
+  }
+  bottom: "conv1"
+  top: "cccp1"
+}
+layers {
+  layer {
+    name: "relu_cccp1"
+    type: "relu"
+  }
+  bottom: "cccp1"
+  top: "cccp1"
+}
+layers {
+  layer {
+    name: "cccp2"
+    type: "cccp"
+    num_output: 96
+    group: 1
+  }
+  bottom: "cccp1"
+  top: "cccp2"
+}
+layers {
+  layer {
+    name: "relu_cccp2"
+    type: "relu"
+  }
+  bottom: "cccp2"
+  top: "cccp2"
+}
+layers {
+  layer {
+    name: "pool1"
+    type: "pool"
+    pool: MAX
+    kernelsize: 3
+    stride: 2
+  }
+  bottom: "cccp2"
+  top: "pool1"
+}
+layers {
+  layer {
+    name: "drop3"
+    type: "dropout"
+    dropout_ratio: 0.5
+    mean_on_test: true
+  }
+  bottom: "pool1"
+  top: "pool1"
+}
+layers {
+  layer {
+    name: "conv2"
+    type: "conv"
+    num_output: 192
+    kernelsize: 5
+    pad: 2
+  }
+  bottom: "pool1"
+  top: "conv2"
+}
+layers {
+  layer {
+    name: "relu2"
+    type: "relu"
+  }
+  bottom: "conv2"
+  top: "conv2"
+}
+layers {
+  layer {
+    name: "cccp3"
+    type: "cccp"
+    num_output: 192
+    group: 1
+  }
+  bottom: "conv2"
+  top: "cccp3"
+}
+layers {
+  layer {
+    name: "relu_cccp3"
+    type: "relu"
+  }
+  bottom: "cccp3"
+  top: "cccp3"
+}
+layers {
+  layer {
+    name: "cccp4"
+    type: "cccp"
+    num_output: 192
+    group: 1
+  }
+  bottom: "cccp3"
+  top: "cccp4"
+}
+layers {
+  layer {
+    name: "relu_cccp4"
+    type: "relu"
+  }
+  bottom: "cccp4"
+  top: "cccp4"
+}
+layers {
+  layer {
+    name: "pool2"
+    type: "pool"
+    pool: MAX
+    kernelsize: 3
+    stride: 2
+  }
+  bottom: "cccp4"
+  top: "pool2"
+}
+layers {
+  layer {
+    name: "drop6"
+    type: "dropout"
+    dropout_ratio: 0.5
+    mean_on_test: true
+  }
+  bottom: "pool2"
+  top: "pool2"
+}
+layers {
+  layer {
+    name: "conv3"
+    type: "conv"
+    num_output: 192
+    kernelsize: 3
+    pad: 1
+  }
+  bottom: "pool2"
+  top: "conv3"
+}
+layers {
+  layer {
+    name: "relu3"
+    type: "relu"
+  }
+  bottom: "conv3"
+  top: "conv3"
+}
+layers {
+  layer {
+    name: "cccp5"
+    type: "cccp"
+    num_output: 192
+    group: 1
+  }
+  bottom: "conv3"
+  top: "cccp5"
+}
+layers {
+  layer {
+    name: "relu_cccp5"
+    type: "relu"
+  }
+  bottom: "cccp5"
+  top: "cccp5"
+}
+layers {
+  layer {
+    name: "cccp6"
+    type: "cccp"
+    num_output: 10
+    group: 1
+  }
+  bottom: "cccp5"
+  top: "cccp6"
+}
+#layers {
+#  layer {
+#    name: "relu_cccp6"
+#    type: "relu"
+#  }
+#  bottom: "cccp6"
+#  top: "cccp6"
+#}
+layers {
+  layer {
+    name: "pool3"
+    type: "pool"
+    pool: AVE
+    stride: 1
+    kernelsize: 8
+  }
+  bottom: "cccp6"
+  top: "pool3"
+}
+#layers {
+# layer {
+#   name: "ip1"
+#   type: "innerproduct"
+#   num_output: 10
+# }
+# bottom: "cccp6"
+# top: "ip1"
+#}
+#layers {
+#  layer {
+#    name: "prob"
+#    type: "softmax"
+#  }
+#  bottom: "pool3"
+#  top: "prob"
+#}
+layers {
+  layer {
+    name: "accuracy"
+    type: "accuracy"
+  }
+ # bottom: "prob"
+  bottom: "pool3"
+  bottom: "label"
+  top: "accuracy"
+}

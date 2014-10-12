@@ -1,0 +1,33 @@
+device_id: 0
+train_net: "cifar-10.prototxt"
+test_net: "cifar-10_val.prototxt"
+test_iter: 100
+test_interval: 500
+base_lr: 0.025
+lr_policy: "step"
+gamma: 0.05
+stepsize: 100001
+
+display: 500
+max_iter: 50001
+momentum: 0.9
+weight_decay: 0.0005
+
+localpower: 0.75
+localgamma: 0.0001
+
+snapshot: 1000
+snapshot_prefix: "cifar-10"
+solver_mode: 1
+info {
+  type: "weight"
+  interval: 100
+}
+info {
+  type: "mean_train_loss"
+  interval: 100
+}
+info {
+  type: "layer_loss"
+  interval: 500
+}
