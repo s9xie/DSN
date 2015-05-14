@@ -1,7 +1,7 @@
 Deeply-supervised Nets
 =======
 **Update**
-For experiments on MNIST, cifar-100 and SVHN, please use the same architecture as CIFAR-10 provided. This architecture/hyper-parameter settings can generalize pretty well and can achieve even better results than the numbers reported in the paper. 
+For experiments on cifar-100 and SVHN, please use the same architecture as CIFAR-10 provided. This architecture/hyper-parameter settings can generalize pretty well and can achieve the numbers reported in the paper. 
 
 Also for Cifar-100 and SVHN, we used **softmax losses** instead of hinge losses for the output supervision and deep supervision. There are known convergence issues of hinge loss on > 10 classes in Caffe.
 
