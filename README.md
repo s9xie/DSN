@@ -5,6 +5,14 @@ For experiments on cifar-100 and SVHN, please use the same architecture as CIFAR
 
 Also for Cifar-100 and SVHN, we used **softmax losses** instead of hinge losses for the output supervision and deep supervision. There are known convergence issues of hinge loss on > 10 classes in Caffe.
 
+Please cite the following pape:
+
+###Deeply-Supervised Nets ###
+Chen-Yu Lee*, Saining Xie*, Patrick Gallagher, Zhengyou Zhang, Zhuowen Tu 
+(* indicates equal contributions) In Proceedings of AISTATS 2015 
+
+If you have problems reproducing the experiments please contact the authors.
+
 **Deeply Supervised Nets**
 This DSN code is based on an older version of [CAFFE](http://caffe.berkeleyvision.org) framework. This is for reproducing the results reported in our [paper](http://vcl.ucsd.edu/~sxie/2014/09/12/dsn-project/). Though with minimum engineering efforts you can apply this idea to your own code, as well as new network architectures.
 
